@@ -11,12 +11,12 @@ def follow_line() :
     global count 
     #calibration(sensor_color) 
     move_forward(140)
-    if blackLeft() and blackRight() : #Se os dois sensores de cor estiverem em cima da linha preta
+    if saw_black_left() and saw_black_right() : #Se os dois sensores de cor estiverem em cima da linha preta
         pass
-    elif blackLeft() : #Se o sensor de cor esquerdo estiver em cima da linha preta
+    elif saw_black_left() : #Se o sensor de cor esquerdo estiver em cima da linha preta
         #O robô vira para a esquerda em aproximadamente 90 graus
         turn_90_left_and_move_distance(50)
-    elif blackRight() :
+    elif saw_black_right() :
         #O robô vira para a direita em aproximadamente 90 graus
         turn_90_right_and_move_distance(50)
         
