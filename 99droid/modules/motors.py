@@ -7,7 +7,7 @@ motor_left = Motor(Port.A)
 motor_right = Motor(Port.B)
 
 
-motors = DriveBase(motor_left, motor_right, wheel_diameter = 42.1, axle_track = 111.2)
+motors = DriveBase(motor_left, motor_right, wheel_diameter = 42.1, axle_track = 114.6)
 
 def move_forward(velocity):
     motors.drive(velocity, 0)
