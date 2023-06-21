@@ -38,25 +38,26 @@ def go_to_passengers() :
         follow_line()
 
 def pick_passenger() : 
-   
+    global passenger_size
     stopwatch.reset() 
     while (color_front_sensor.reflection() < 1 ): 
-     #   print(color_front_sensor.reflection())
+        # print(color_front_sensor.reflection())
         move_right(30) 
     time_spin = stopwatch.time()
     stop() 
     move_forward_cm(10) 
     stop() 
     if (distance_front() < 10) : 
-        passenger_size = 15 
+        passenger_size = 15
     else :
-        passenger_size = 10 
+        passenger_size = 10
     close_claw() 
     move_backward_cm(10) 
     stop()
     stopwatch.reset() 
     while (stopwatch.time() < time_spin) : 
         move_left(30) 
+    
         
 def go_to_cinema() : 
     turn180()

@@ -9,6 +9,7 @@ from modules.motors import *
 from modules.colors import *
 from modules.detect import *
 from modules.path import *
+from modules.claw import *
 
 #Declaração de variáveis globais e objetos
 
