@@ -19,9 +19,9 @@ def follow_line() :
     if (saw_black_left() and saw_black_right()) :
         pass
     elif saw_black_left() :
-        turn_left(30)
+        turn_left(34)
     elif saw_black_right() :
-        turn_right(30)
+        turn_right(34)
 
 #Funções referentes ao trajeto do robô
 
@@ -65,15 +65,16 @@ def pick_passenger() :
     turn_right(10)
     time_spin = stopwatch.time()
     stop() 
-    if (distance_front() < 20) : 
-        passenger_size = 15
-    else :
-        passenger_size = 10
-    # while True :
-    #     print(distance_front())
+    
     move_forward_cm(7) 
     stop() 
     close_claw()
+    if (distance_front() > 200) : 
+        passenger_size = 15
+        print("É O JÚLIO!")
+    else :
+        passenger_size = 10
+        print("É A JESS!")
     move_backward_cm(7) 
     stop()
     stopwatch.reset() 
@@ -170,36 +171,53 @@ def drop_passenger() :
 
     if total_of_passengers == 1 :
         if passenger_size == 15 :
+            print("Partiu levar Júlio na Lanchonete")
             go_to_lanchonete()
+
         else :
+            print("Partiu levar Jess no Cinema")
             go_to_cinema()
+            
         total_of_passengers += 1
+
     elif total_of_passengers == 2 :
         if passenger_size == 15 :
             if total_of_passengers_of_15cm == 1 :
+                print("Partiu levar Júlio na Lanchonete")
                 go_to_lanchonete()
+                
+
             elif total_of_passengers_of_15cm == 2 :
+                print("Partiu levar Júlio na Escola")
                 go_to_school()
         else :
             if total_of_passengers_of_10cm == 1 :
+                print("Partiu levar Jess no Cinema")
                 go_to_cinema()
             elif total_of_passengers_of_10cm == 2 :
+                print("Partiu levar Jess na Escola")
                 go_to_school()
         total_of_passengers += 1
     elif total_of_passengers >= 3 :
         if passenger_size == 15 :
             if total_of_passengers_of_15cm == 1 :
+                print("Partiu levar Júlio na Lanchonete")
                 go_to_lanchonete()
             elif total_of_passengers_of_15cm == 2 :
+                print("Partiu levar Júlio na Escola")
                 go_to_school()
             elif total_of_passengers_of_15cm == 3 :
+                print("Partiu levar Júlio no Cinema")
                 go_to_cinema()
         else :
             if total_of_passengers_of_10cm == 1 :
+                print("Partiu levar Jess no Cinema")
                 go_to_cinema()
             elif total_of_passengers_of_10cm == 2 :
+                print("Partiu levar Jess na Escola")
                 go_to_school()
             elif total_of_passengers_of_10cm == 3 :
+                print("Partiu levar Jess na Lanchonete")
                 go_to_lanchonete()
         total_of_passengers += 1
 

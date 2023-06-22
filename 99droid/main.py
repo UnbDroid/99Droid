@@ -16,13 +16,24 @@ from modules.claw import *
 #----------------------------------------------------------------------------------------------------------------------------------
 
 #Programa principal (minúsuclo pq é o programa principal lmfao)
-
+#open_claw()
 go_to_passengers()
 while total_of_passengers <= 5 :
     pick_passenger()
     drop_passenger()
 
-# open_claw()
+#open_claw()
 
 # while True :
 #     calibrate()
+
+#while True:
+ #   print(distance_front())
+  #  if (distance_front() > 200) : 
+   #     passenger_size = 15
+    #    print("É O JÚLIO!")
+    #else :
+     #   passenger_size = 10
+      #  print("É A JESS!")
+    #wait(5000)
+
