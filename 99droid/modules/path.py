@@ -5,6 +5,7 @@ from pybricks.tools import StopWatch
 from modules.motors import *
 from modules.colors import *
 from modules.detect import *
+from modules.claw import *
 
 def follow_line() :
     global count
