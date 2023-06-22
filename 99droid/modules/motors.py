@@ -1,13 +1,14 @@
 from pybricks.ev3devices import Motor
 from pybricks.parameters import Port
 from pybricks.robotics import DriveBase
+from pybricks.tools import wait
 
 
 motor_left = Motor(Port.A) 
 motor_right = Motor(Port.B)
 
 
-motors = DriveBase(motor_left, motor_right, wheel_diameter = 42.1, axle_track = 114)
+motors = DriveBase(motor_left, motor_right, wheel_diameter = 42.1, axle_track = 114.3)
 
 def move_forward(velocity):
     motors.drive(velocity, 0)
@@ -49,10 +50,14 @@ def turn_90_right_and_move_distance(distance):
     motors.straight(distance)
     motors.turn(90)
     stop()
-    
+
 def turn_180():
     motors.turn(180)
     
 def stop():
     motors.stop()
 
+def calibrate():
+    turn_right(360)
+    stop()
+    wait(1000)

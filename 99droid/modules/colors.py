@@ -44,3 +44,9 @@ def saw_red_left() :
 
 def saw_red_right() :
     return red_right() > (green_right() + blue_right())
+
+def saw_blue_left() :
+    return blue_left() > (red_left() + green_left())
+
+def saw_blue_right() :
+    return blue_right() > (red_right() + green_right())

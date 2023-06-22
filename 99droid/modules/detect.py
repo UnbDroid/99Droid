@@ -7,4 +7,3 @@ ultrasonic_front_sensor = UltrasonicSensor(Port.S3)
 
 def distance_front() : 
     return ultrasonic_front_sensor.distance()/10 
-

@@ -7,20 +7,27 @@ from modules.colors import *
 from modules.detect import *
 from modules.claw import *
 
+count = 0 
+passenger_size = 0 
+total_of_passengers = 1
+total_of_passengers_of_10cm = 1
+total_of_passengers_of_15cm = 1
+time_forward = 0
+
 def follow_line() :
-    global count
-    move_forward(140)
+    move_forward(120)
     if (saw_black_left() and saw_black_right()) :
         pass
     elif saw_black_left() :
-        turn_90_left_and_move_distance(50)
+        turn_left(30)
     elif saw_black_right() :
-        turn_90_right_and_move_distance(50)
+        turn_right(30)
 
 #Funções referentes ao trajeto do robô
 
 def go_to_passengers() :
     global count
+    global time_forward
     count = 0
     while not (saw_red_left() and saw_red_right()) :
         follow_line()
@@ -31,73 +38,96 @@ def go_to_passengers() :
         move_forward_cm(10)
     while count < 3 :
         if saw_red_right() :
-            move_forward_cm(10)
+            move_forward_cm(13.5)
             count += 1
             if (count != 3 and saw_red_right()) : 
                 while (saw_red_left() or saw_red_right()) : 
                     move_forward_cm(1)
         follow_line()
+    turn_90_right()
 
 def pick_passenger() : 
     global passenger_size
+    global time_forward
+    if total_of_passengers > 1 :
+        turn_90_right()
+    stopwatch.reset()
+    while not saw_blue_left() and not saw_blue_right() :
+        move_forward(60)
+    stop()
+    time_forward = stopwatch.time()
+    move_forward_cm(3)
+    turn_90_left()
     stopwatch.reset() 
     while (color_front_sensor.reflection() < 1 ): 
         # print(color_front_sensor.reflection())
         move_right(30) 
+    turn_right(10)
     time_spin = stopwatch.time()
     stop() 
-    move_forward_cm(10) 
-    stop() 
-    if (distance_front() < 10) : 
+    if (distance_front() < 20) : 
         passenger_size = 15
     else :
         passenger_size = 10
-    close_claw() 
-    move_backward_cm(10) 
+    # while True :
+    #     print(distance_front())
+    move_forward_cm(7) 
+    stop() 
+    close_claw()
+    move_backward_cm(7) 
     stop()
     stopwatch.reset() 
     while (stopwatch.time() < time_spin) : 
-        move_left(30) 
-    
+        move_left(30)
+    turn_90_right() 
+    move_backward_cm(3)
+    while not saw_blue_left() and not saw_blue_right() :
+        move_backward(60)
+    stop()
+    stopwatch.reset()
+    while stopwatch.time() < time_forward :
+        move_backward(60)
+    stop()
+    turn_90_left()
         
 def go_to_cinema() : 
-    turn180()
+    turn_180()
     while (saw_red_left() or saw_red_right()) : 
         move_forward(140)
-    while (not saw_red_left() and saw_red_right()) : 
+    while (not saw_red_left() and not saw_red_right()) : 
         follow_line()
     stop() 
     turn_90_left_and_move_distance(100)
     move_forward_cm(10)
     open_claw() 
-    move_forward_cm(10) 
+    move_backward_cm(10) 
     turn_90_left() 
     while (saw_red_left() or saw_red_right() ): 
         move_forward(150)
-    while not saw_red_left() and saw_red_right() : 
+    while not saw_red_left() and not saw_red_right() : 
         follow_line() 
-    move_forward_cm(10) 
+    move_forward_cm(13.5)
     
 def go_to_lanchonete() : 
     while (saw_red_left() or saw_red_right()) :
         move_forward(150) 
 
-    while not saw_red_left() and saw_red_right() :
+    while not saw_red_left() and not saw_red_right() :
         follow_line() 
 
     stop() 
     move_forward_cm(10) 
     turn_90_right() 
     move_forward_cm(10) 
-    abreGarra()
+    open_claw()
     move_backward_cm(10)
     turn_90_right()
     while(saw_red_left() or saw_red_right()): 
         move_forward(150)
-    while not saw_red_left() and saw_red_right() :
+    while not saw_red_left() and not saw_red_right() :
         follow_line() 
-    move_forward_cm(10) 
-    turn180() 
+    move_forward_cm(13.5) 
+    turn_180() 
     
 def go_to_school() : 
     while (saw_red_left() or saw_red_right()) : 
@@ -114,7 +144,7 @@ def go_to_school() :
     move_forward_cm(10) 
     turn_90_right() 
     move_forward_cm(10) 
-    abreGarra()
+    open_claw()
     move_backward_cm(10)
     turn_90_right()
     
@@ -129,8 +159,8 @@ def go_to_school() :
             if saw_red_right() and cont != 3 :
                 move_forward_cm(5)
 
-    move_forward_cm(10) 
-    turn180() 
+    move_forward_cm(13.5) 
+    turn_180() 
     
 def drop_passenger() :
     global total_of_passengers
