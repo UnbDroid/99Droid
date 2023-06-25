@@ -1,10 +1,11 @@
 from pybricks.parameters import Port, Stop
 from pybricks.ev3devices import Motor
 from pybricks.tools import  StopWatch
+from pybricks.parameters import Stop
 
 motor_claw = Motor(Port.D)
 
-time_open_claw = 3050
+time_open_claw = 5050
 stopwatch = StopWatch() 
 
 def open_claw():
