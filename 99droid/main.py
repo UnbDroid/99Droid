@@ -22,7 +22,7 @@ while total_of_passengers <= 5 :
     pick_passenger()
     drop_passenger()
 
-# open_claw()
+# close_claw()
 
 # while True :
 #     calibrate()
