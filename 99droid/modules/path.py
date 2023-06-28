@@ -74,21 +74,14 @@ def pick_passenger() :
     turn_right(10)
     time_spin = stopwatch.time()
     stop() 
-    turn_left(20)
-    degrees_turned = 0
-    initial_distance = distance_front()
-    while degrees_turned < 40 :
-        print(distance_front())
-        if distance_front() < (initial_distance * 0.80) :
-            passenger_size = 15
-            print("É O JÚLIO!")
-        turn_right(1)
-        degrees_turned += 1
-    if passenger_size != 15 :
+    
+    move_forward_cm(7) 
+    if (color_over_sensor.reflection() > 0) : 
+        passenger_size = 15
+        print("É O JÚLIO!")
+    else :
         passenger_size = 10
         print("É A JESS!")
-    turn_left(20)
-    move_forward_cm(7) 
     stop() 
     close_claw()
     move_backward_cm(7) 
