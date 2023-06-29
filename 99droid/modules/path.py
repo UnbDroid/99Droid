@@ -75,7 +75,7 @@ def pick_passenger() :
     time_spin = stopwatch.time()
     stop() 
     
-    move_forward_cm(7) 
+    move_forward_cm(8) 
     if (color_over_sensor.reflection() > 0) : 
         passenger_size = 15
         print("É O JÚLIO!")
@@ -84,7 +84,7 @@ def pick_passenger() :
         print("É A JESS!")
     stop() 
     close_claw()
-    move_backward_cm(7) 
+    move_backward_cm(8) 
     stop()
     stopwatch.reset() 
     while (stopwatch.time() < time_spin) : 
@@ -94,10 +94,8 @@ def pick_passenger() :
     while not saw_blue_left() and not saw_blue_right() :
         move_backward(60)
     stop()
-    stopwatch.reset()
-    while stopwatch.time() < time_forward :
+    while not saw_red_left() and not saw_red_right() :
         move_backward(60)
-    stop()
     turn_90_left()
         
 def go_to_cinema() : 
