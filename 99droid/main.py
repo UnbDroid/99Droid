@@ -16,16 +16,16 @@ from modules.claw import *
 #----------------------------------------------------------------------------------------------------------------------------------
 
 #Programa principal (minúsuclo pq é o programa principal lmfao)
-
+#close_claw()
 go_to_passengers()
 while total_of_passengers <= 5 :
     pick_passenger()
     drop_passenger()
 
-# close_claw()
-
-# while True :
-#     calibrate()
+#close_claw()
+#open_claw()
+#while True :
+ #   calibrate()
 
 #while True:
  #   print(distance_front())

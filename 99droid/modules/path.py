@@ -52,7 +52,8 @@ def go_to_passengers() :
             if (count != 3 and saw_red_right()) : 
                 while (saw_red_left() or saw_red_right()) : 
                     move_forward_cm(1)
-        follow_line()
+        else:
+            follow_line()
     turn_90_right()
 
 def pick_passenger() : 
@@ -79,14 +80,17 @@ def pick_passenger() :
     if (color_over_sensor.reflection() > 0) : 
         passenger_size = 15
         print("É O JÚLIO!")
+        ev3.speaker.beep(200)
     else :
         passenger_size = 10
         print("É A JESS!")
+        ev3.speaker.beep(100)
     stop() 
     close_claw()
     move_backward_cm(8) 
     stop()
     stopwatch.reset() 
+
     while (stopwatch.time() < time_spin) : 
         move_left(30)
     turn_90_right() 
@@ -94,8 +98,14 @@ def pick_passenger() :
     while not saw_blue_left() and not saw_blue_right() :
         move_backward(60)
     stop()
+    stopwatch.reset()
+    print(time_forward)
     while not saw_red_left() and not saw_red_right() :
-        move_backward(60)
+        print(stopwatch.time())
+        move_backward(60) 
+        if time_forward <= stopwatch.time() :
+            break
+    stop()
     turn_90_left()
         
 def go_to_cinema() : 
@@ -110,9 +120,9 @@ def go_to_cinema() :
         follow_line()
     stop() 
     turn_90_left_and_move_distance(100)
-    move_forward_cm(10)
+    move_forward_cm(18) #andando
     open_claw() 
-    move_backward_cm(10) 
+    move_backward_cm(18) #andando
     turn_90_left() 
     while (saw_red_left() or saw_red_right() ): 
         move_forward(150)
@@ -135,9 +145,9 @@ def go_to_lanchonete() :
     stop() 
     move_forward_cm(10) 
     turn_90_right() 
-    move_forward_cm(10) 
+    move_forward_cm(18) #andando
     open_claw()
-    move_backward_cm(10)
+    move_backward_cm(18) #andando
     turn_90_right()
     while(saw_red_left() or saw_red_right()): 
         move_forward(150)
@@ -174,9 +184,9 @@ def go_to_school() :
     ev3.speaker.beep()
     stop() 
     turn_90_right() 
-    move_forward_cm(10) 
+    move_forward_cm(18) #andando
     open_claw()
-    move_backward_cm(10)
+    move_backward_cm(18) #andando
     turn_90_right()
     
     while (saw_red_left() or saw_red_right()) :
