@@ -26,10 +26,10 @@ def follow_line() :
     if (saw_black_left() and saw_black_right()) :
         pass
     elif saw_black_left() :
-        turn_left(30)
+        turn_left(22.5)
         count_turns_left += 1
     elif saw_black_right() :
-        turn_right(30)
+        turn_right(22.5)
         count_turns_right += 1
 
 #Funções referentes ao trajeto do robô
@@ -116,7 +116,8 @@ def go_to_cinema() :
         move_forward(140)
     count_turns_left = 0
     count_turns_right = 0
-    while not saw_red_left() and not saw_red_right() and (count_turns_left < 2 or count_turns_right < 2) : 
+    print('count_turns_left: ' + str(count_turns_left) + ' count_turns_right: ' + str(count_turns_right))
+    while not saw_red_left() and not saw_red_right() or (count_turns_left < 3 and count_turns_right < 3) : 
         follow_line()
     stop() 
     turn_90_left_and_move_distance(100)
@@ -126,7 +127,9 @@ def go_to_cinema() :
     turn_90_left() 
     while (saw_red_left() or saw_red_right() ): 
         move_forward(150)
-    while not saw_red_left() and not saw_red_right() : 
+    count_turns_left = 0
+    count_turns_right = 0
+    while not saw_red_left() and not saw_red_right() or (count_turns_left < 3 and count_turns_right < 3) : 
         follow_line() 
     move_forward_cm(13.5)
     
@@ -139,7 +142,8 @@ def go_to_lanchonete() :
     count_turns_left = 0
     count_turns_right = 0
 
-    while not saw_red_left() and not saw_red_right() and (count_turns_left < 2 or count_turns_right < 2) :
+    print('count_turns_left: ' + str(count_turns_left) + ' count_turns_right: ' + str(count_turns_right))
+    while not saw_red_left() and not saw_red_right() or (count_turns_left < 3 and count_turns_right < 3) :
         follow_line() 
 
     stop() 
@@ -151,7 +155,9 @@ def go_to_lanchonete() :
     turn_90_right()
     while(saw_red_left() or saw_red_right()): 
         move_forward(150)
-    while not saw_red_left() and not saw_red_right() :
+    count_turns_left = 0
+    count_turns_right = 0
+    while not saw_red_left() and not saw_red_right() or (count_turns_left < 3 and count_turns_right < 3) :
         follow_line() 
     move_forward_cm(13.5) 
     turn_180() 
@@ -170,9 +176,10 @@ def go_to_school() :
     cont = 0
     print("Zerou o contador")
     ev3.speaker.beep()
+    print('count_turns_left: ' + str(count_turns_left) + ' count_turns_right: ' + str(count_turns_right))
     while cont < 2 :
         follow_line() 
-        if (saw_red_left() or saw_red_right()) and (count_turns_left > 2 or count_turns_right > 2) : 
+        if (saw_red_left() or saw_red_right()) and (count_turns_left > 3 or count_turns_right > 3) : 
             cont += 1 
             print("Viu vermelho")
             move_forward_cm(10) 
@@ -196,7 +203,7 @@ def go_to_school() :
 
     while cont < 2 :
         follow_line() 
-        if (saw_red_left() or saw_red_right()) and (count_turns_left > 2 or count_turns_right > 2) : 
+        if (saw_red_left() or saw_red_right()) and (count_turns_left > 3 or count_turns_right > 3) : 
             cont += 1 
             print("Viu vermelho")
             move_forward_cm(10) 
@@ -251,28 +258,28 @@ def drop_passenger() :
         total_of_passengers += 1
     elif total_of_passengers >= 3 :
         if passenger_size == 15 :
-            if total_of_passengers_of_15cm == 1 :
+            if total_of_passengers_of_15cm % 3 == 1 :
                 print("Partiu levar Júlio na Lanchonete")
                 go_to_lanchonete()
                 total_of_passengers_of_15cm += 1
-            elif total_of_passengers_of_15cm == 2 :
+            elif total_of_passengers_of_15cm % 3 == 2 :
                 print("Partiu levar Júlio na Escola")
                 go_to_school()
                 total_of_passengers_of_15cm += 1
-            elif total_of_passengers_of_15cm == 3 :
+            elif total_of_passengers_of_15cm % 3 == 0 :
                 print("Partiu levar Júlio no Cinema")
                 go_to_cinema()
                 total_of_passengers_of_15cm += 1
         else :
-            if total_of_passengers_of_10cm == 1 :
+            if total_of_passengers_of_10cm % 3 == 1 :
                 print("Partiu levar Jess no Cinema")
                 go_to_cinema()
                 total_of_passengers_of_10cm += 1
-            elif total_of_passengers_of_10cm == 2 :
+            elif total_of_passengers_of_10cm % 3 == 2 :
                 print("Partiu levar Jess na Escola")
                 go_to_school()
                 total_of_passengers_of_10cm += 1
-            elif total_of_passengers_of_10cm == 3 :
+            elif total_of_passengers_of_10cm % 3 == 0 :
                 print("Partiu levar Jess na Lanchonete")
                 go_to_lanchonete()
                 total_of_passengers_of_10cm += 1

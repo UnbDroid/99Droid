@@ -22,10 +22,10 @@ while total_of_passengers <= 5 :
     pick_passenger()
     drop_passenger()
 
-#close_claw()
-#open_claw()
-#while True :
- #   calibrate()
+# close_claw()
+# open_claw()
+# while True :
+#    calibrate()
 
 #while True:
  #   print(distance_front())
