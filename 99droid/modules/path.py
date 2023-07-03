@@ -59,6 +59,7 @@ def go_to_passengers() :
 def pick_passenger() : 
     global passenger_size
     global time_forward
+    found_nothing = False
     if total_of_passengers > 1 :
         turn_90_right()
     stopwatch.reset()
@@ -71,9 +72,22 @@ def pick_passenger() :
     stopwatch.reset() 
     while (color_front_sensor.reflection() < 1 ): 
         # print(color_front_sensor.reflection())
-        move_right(30) 
-    turn_right(10)
+        move_right(30)
+        if stopwatch.time() > 5000:
+            found_nothing = True
+            break 
     time_spin = stopwatch.time()
+    if found_nothing :
+        stopwatch.reset() 
+        while (stopwatch.time() < time_spin) : 
+            move_left(30)
+        move_forward_cm(7)
+        stopwatch.reset()
+        while (color_front_sensor.reflection() < 1 ): 
+            # print(color_front_sensor.reflection())
+            move_right(30)
+        time_spin = stopwatch.time()
+    turn_right(10)
     stop() 
     
     move_forward_cm(8) 
@@ -89,15 +103,12 @@ def pick_passenger() :
     close_claw()
     move_backward_cm(8) 
     stop()
+    turn_left(10)
     stopwatch.reset() 
-
     while (stopwatch.time() < time_spin) : 
         move_left(30)
     turn_90_right() 
     move_backward_cm(3)
-    while not saw_blue_left() and not saw_blue_right() :
-        move_backward(60)
-    stop()
     stopwatch.reset()
     print(time_forward)
     while not saw_red_left() and not saw_red_right() :

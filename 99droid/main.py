@@ -21,6 +21,7 @@ go_to_passengers()
 while total_of_passengers <= 5 :
     pick_passenger()
     drop_passenger()
+    # time_open_claw += 500
 
 # close_claw()
 # open_claw()
