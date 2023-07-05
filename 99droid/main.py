@@ -17,12 +17,13 @@ from modules.claw import *
 
 #Programa principal (minúsuclo pq é o programa principal lmfao)
 #close_claw()
+motors.settings(150, 300, 100, 1000)
 go_to_passengers()
 while total_of_passengers <= 5 :
     pick_passenger()
     drop_passenger()
     # time_open_claw += 500
-
+# print(sensor_color_right.rgb())
 # close_claw()
 # open_claw()
 # while True :
