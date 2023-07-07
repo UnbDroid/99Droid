@@ -38,8 +38,8 @@ def go_to_passengers() :
     global count
     global time_forward
     count = 0
-    while not (saw_red_left() and saw_red_right()) :
-        follow_line()
+    while not saw_red_left() and not saw_red_right() :
+        motors.drive(150, 0)
     count += 1
     print("count + 1")
     turn_90_left_and_move_distance(100)
@@ -94,11 +94,13 @@ def pick_passenger() :
     if (color_over_sensor.reflection() > 0) : 
         passenger_size = 15
         print("É O JÚLIO!")
-        ev3.speaker.beep(200)
+        ev3.speaker.beep(frequency=800, duration=500)
+        wait(500)
+        ev3.speaker.beep(frequency=800, duration=500)
     else :
         passenger_size = 10
         print("É A JESS!")
-        ev3.speaker.beep(100)
+        ev3.speaker.beep(frequency=300, duration=500)
     stop() 
     close_claw()
     move_backward_cm(9) 
@@ -133,6 +135,7 @@ def go_to_cinema() :
     stop() 
     turn_90_left_and_move_distance(100)
     move_forward_cm(18) #andando
+    ev3.speaker.beep(frequency=500, duration=500)
     open_claw() 
     move_backward_cm(18) #andando
     turn_90_left() 
@@ -161,6 +164,7 @@ def go_to_lanchonete() :
     move_forward_cm(10) 
     turn_90_right() 
     move_forward_cm(18) #andando
+    ev3.speaker.beep(frequency=500, duration=500)
     open_claw()
     move_backward_cm(18) #andando
     turn_90_right()
@@ -201,6 +205,7 @@ def go_to_school() :
     stop() 
     turn_90_right() 
     move_forward_cm(18) #andando
+    ev3.speaker.beep(frequency=500, duration=500)
     open_claw()
     move_backward_cm(18) #andando
     turn_90_right()
