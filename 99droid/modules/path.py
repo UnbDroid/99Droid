@@ -298,3 +298,11 @@ def drop_passenger() :
         total_of_passengers += 1
 
 #-------------------------------------------------------------------------------------------------------
+
+def finish() :
+    ev3.speaker.speak("Vai Flamengo")
+    while True :
+        motor_claw.run_time(600, time_open_claw, Stop.HOLD, True)
+        motor_claw.hold()
+        motor_claw.run_time(-600, time_open_claw, Stop.HOLD, True)
+        motor_claw.hold()

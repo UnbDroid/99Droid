@@ -19,7 +19,7 @@ from modules.claw import *
 #close_claw()
 motors.settings(150, 300, 100, 1000)
 go_to_passengers()
-while total_of_passengers <= 5 :
+while total_of_passengers < 4 :
     pick_passenger()
     drop_passenger()
     # time_open_claw += 500
@@ -39,3 +39,4 @@ while total_of_passengers <= 5 :
       #  print("É A JESS!")
     #wait(5000)
 
+# finish()
