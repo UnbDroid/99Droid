@@ -26,10 +26,10 @@ def follow_line() :
     if (saw_black_left() and saw_black_right()) :
         pass
     elif saw_black_left() :
-        turn_left(15)
+        turn_left(22.5)
         count_turns_left += 1
     elif saw_black_right() :
-        turn_right(15)
+        turn_right(22.5)
         count_turns_right += 1
 
 #Funções referentes ao trajeto do robô
@@ -87,7 +87,7 @@ def pick_passenger() :
             # print(color_front_sensor.reflection())
             move_right(40)
         time_spin = stopwatch.time()
-    turn_right(5)
+    turn_right(7.5)
     stop() 
     
     move_forward_cm(9) 
@@ -103,7 +103,7 @@ def pick_passenger() :
     close_claw()
     move_backward_cm(9) 
     stop()
-    turn_left(5)
+    turn_left(7.5)
     stopwatch.reset() 
     while (stopwatch.time() < time_spin) : 
         move_left(40)
@@ -128,7 +128,7 @@ def go_to_cinema() :
     count_turns_left = 0
     count_turns_right = 0
     print('count_turns_left: ' + str(count_turns_left) + ' count_turns_right: ' + str(count_turns_right))
-    while not saw_red_left() and not saw_red_right() or (count_turns_left < 4 and count_turns_right < 4) : 
+    while not saw_red_left() and not saw_red_right() or (count_turns_left < 3 and count_turns_right < 3) : 
         follow_line()
     stop() 
     turn_90_left_and_move_distance(100)
@@ -140,7 +140,7 @@ def go_to_cinema() :
         move_forward(150)
     count_turns_left = 0
     count_turns_right = 0
-    while not saw_red_left() and not saw_red_right() or (count_turns_left < 4 and count_turns_right < 4) : 
+    while not saw_red_left() and not saw_red_right() or (count_turns_left < 3 and count_turns_right < 3) : 
         follow_line() 
     move_forward_cm(10)
     
@@ -154,7 +154,7 @@ def go_to_lanchonete() :
     count_turns_right = 0
 
     print('count_turns_left: ' + str(count_turns_left) + ' count_turns_right: ' + str(count_turns_right))
-    while not saw_red_left() and not saw_red_right() or (count_turns_left < 4 and count_turns_right < 4) :
+    while not saw_red_left() and not saw_red_right() or (count_turns_left < 3 and count_turns_right < 3) :
         follow_line() 
 
     stop() 
@@ -168,7 +168,7 @@ def go_to_lanchonete() :
         move_forward(150)
     count_turns_left = 0
     count_turns_right = 0
-    while not saw_red_left() and not saw_red_right() or (count_turns_left < 4 and count_turns_right < 4) :
+    while not saw_red_left() and not saw_red_right() or (count_turns_left < 3 and count_turns_right < 3) :
         follow_line() 
     move_forward_cm(10) 
     turn_180() 
@@ -190,7 +190,7 @@ def go_to_school() :
     print('count_turns_left: ' + str(count_turns_left) + ' count_turns_right: ' + str(count_turns_right))
     while cont < 2 :
         follow_line() 
-        if (saw_red_left() or saw_red_right()) and (count_turns_left > 4 or count_turns_right > 4) : 
+        if (saw_red_left() or saw_red_right()) and (count_turns_left > 3 or count_turns_right > 3) : 
             cont += 1 
             print("Viu vermelho")
             move_forward_cm(10) 
@@ -212,7 +212,7 @@ def go_to_school() :
 
     while cont < 2 :
         follow_line() 
-        if (saw_red_left() or saw_red_right()) and (count_turns_left > 4 or count_turns_right > 4) : 
+        if (saw_red_left() or saw_red_right()) and (count_turns_left > 3 or count_turns_right > 3) : 
             cont += 1 
             print("Viu vermelho")
             move_forward_cm(10) 
