@@ -27,7 +27,7 @@ while total_of_passengers < 4 :
 # close_claw()
 # open_claw()
 # while True :
-#    calibrate()
+#    print(sensor_color_right.rgb())
 
 #while True:
  #   print(distance_front())
