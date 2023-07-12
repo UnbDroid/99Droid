@@ -1,6 +1,6 @@
 # Equipe 99Droid
 <div align="center">
-<img width="200" src="https://i.imgur.com/pGGYNZ1.png"/>
+<img width="250" src="https://i.imgur.com/jJxfYNO.png"/>
 
 </div>
 
